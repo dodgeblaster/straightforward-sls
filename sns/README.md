@@ -14,10 +14,7 @@ const example = {
 }
 
 export const receiveAnEventAndEmit = async event => {
-    // receive
-    const data = snsInput(event)
-
-    // emit
+    const receivedSnsEvent = snsInput(event)
     await sns.emit(example)
 }
 ```

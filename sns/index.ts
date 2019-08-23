@@ -1,4 +1,5 @@
 import * as aws from 'aws-sdk'
+const region = process.env.REGION || 'us-east-1'
 
 export const snsInput = e => {
     const snsMessage = e.Records[0].Sns
@@ -7,7 +8,6 @@ export const snsInput = e => {
 }
 export default {
     emit: async ({ event, data }) => {
-        const region = process.env.REGION || 'us-east-1'
         const SNS = new aws.SNS({ region })
 
         const arn = await SNS.createTopic({ Name: event }).promise()
