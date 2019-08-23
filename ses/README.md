@@ -1,5 +1,23 @@
 # SES
 
+## Example
+
+```ts
+import ses from './index'
+
+const example = {
+    title: 'Example',
+    to: ['johnsmith@gmail.com'],
+    cc: [],
+    from: 'johnsmith@gmail.com',
+    body: 'html'
+}
+
+export const main = async () => {
+    await ses.email(example)
+}
+```
+
 ## Serverless Permissions Example
 
 In order to use ses, either your whole service or your functions

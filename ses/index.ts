@@ -1,12 +1,7 @@
-const example = {
-    title: 'Example',
-    to: ['garysjenningsdr@gmail.com'],
-    cc: [],
-    from: 'garysjenningsdr@gmail.com',
-    body: 'html'
-}
+import * as aws from 'aws-sdk'
+const region = process.env.REGION || 'us-east-1'
 
-export default config => ({
+export default {
     email: async ({ body, cc, to, title, from }) => {
         var params = {
             Destination: {
@@ -29,9 +24,9 @@ export default config => ({
             ReplyToAddresses: [from]
         }
 
-        var sendPromise = new config.aws.SES({
+        var sendPromise = new aws.SES({
             apiVersion: '2010-12-01',
-            region: config.region || 'us-east-1'
+            region: region || 'us-east-1'
         })
             .sendEmail(params)
             .promise()
@@ -44,4 +39,4 @@ export default config => ({
                 console.error(err, err.stack)
             })
     }
-})
+}

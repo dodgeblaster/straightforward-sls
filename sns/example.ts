@@ -1,10 +1,4 @@
-import * as aws from 'aws-sdk'
 import sns, { snsInput } from './index'
-
-const config = {
-    aws,
-    region: 'us-east-2'
-}
 
 const example = {
     event: 'USER_CREATED',
@@ -19,5 +13,5 @@ export const receiveAnEventAndEmit = async event => {
     const data = snsInput(event)
 
     // emit
-    await sns(config).emit(example)
+    await sns.emit(example)
 }
